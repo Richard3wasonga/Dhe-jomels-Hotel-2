@@ -18,7 +18,7 @@ const App = () => {
       }finally{
         setTimeout(() => {
           setloading(false)
-        },1000)
+        },3000)
       }
 
     }
