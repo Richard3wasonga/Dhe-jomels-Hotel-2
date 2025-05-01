@@ -1,8 +1,11 @@
 import React from 'react'
+import Display from './Display'
 
-const Menu = () => {
+const Menu = ({menu}) => {
   return (
-    <div>Menu</div>
+    <div>
+      <Display menu={menu}/>
+    </div>
   )
 }
 
