@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .qr-code-container {
   display: flex;
   flex-direction: column;
@@ -19,4 +26,76 @@
   background: white;
   padding: 16px;
   border-radius: 12px;
+}
+h2 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  font-family: "Playfair", serif; 
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #d4af37; 
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+.menu-section {
+  background-color: #ffffff;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  max-width: 1000px;
+  font-family: "Poppins", sans-serif;
+}
+
+.menu-section h3 {
+  font-size: 28px;
+  color: #222;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 16px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+td {
+  padding: 16px;
+  vertical-align: top;
+  border-top: 1px solid #f0f0f0;
+}
+
+.menu-details {
+  margin-top: 8px;
+  padding-left: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.menu-details li {
+  margin-bottom: 4px;
+  list-style-type: disc;
+}
+
+tr:nth-child(even) {
+  background-color: #fcfcfc;
 }

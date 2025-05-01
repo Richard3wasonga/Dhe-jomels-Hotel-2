@@ -47,6 +47,15 @@ const Display = ({ menu }) => {
                     ) : (
                       <td>{item.price ? `Ksh ${item.price}` : '-'}</td>
                     )}
+                    {item.details && (
+                      <td>
+                        <ul className="menu-details">
+                          {item.details.map((detail, id) => (
+                            <li key={id}>{detail}</li>
+                          ))}
+                        </ul>
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
