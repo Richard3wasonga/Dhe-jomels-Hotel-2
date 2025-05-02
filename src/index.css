@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -59,23 +60,26 @@ h2::after {
 
 .menu-section h3 {
   font-size: 28px;
-  color: #222;
+  color: #C59456;
   border-bottom: 2px solid #eee;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  font-family: "Lobster", sans-serif;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 th {
   text-align: left;
   padding: 12px 16px;
   font-size: 16px;
-  background-color: #f8f8f8;
-  color: #333;
+  background-color: #800023;
+  color: #f8f8f8;
 }
 
 td {
@@ -94,8 +98,11 @@ td {
 .menu-details li {
   margin-bottom: 4px;
   list-style-type: disc;
+  color: #C59456;
 }
-
+.category-name{
+  color: #800023;
+}
 tr:nth-child(even) {
   background-color: #fcfcfc;
 }
@@ -103,7 +110,7 @@ tr:nth-child(even) {
   text-align: center;
   font-size: 1.5rem;
   padding: 100px 20px;
-  color: #1f1f1f;
+  color: #C59456;
   font-family: 'Poppins', sans-serif;
   position: relative;
   overflow: hidden;
@@ -114,14 +121,23 @@ tr:nth-child(even) {
   display: block;
   width: 80px;
   height: 4px;
-  background-color: #d43f3f;
+  background-color: #800023;;
   border-radius: 2px;
   margin: 20px auto 0;
   animation: slide 1.2s ease-in-out infinite;
 }
-
 @keyframes slide {
-  0% { transform: translateX(-100%); opacity: 0; }
-  50% { transform: translateX(0); opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
 }
+

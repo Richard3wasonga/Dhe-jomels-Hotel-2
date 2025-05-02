@@ -18,7 +18,7 @@ const Display = ({ menu }) => {
 
         return (
           <div key={category} className={`menu-section ${category.toLowerCase().replace(/\s+/g, '-')}`}>
-            <h3>{category.toUpperCase()}</h3>
+            <h3 className='category-title'>{category.toUpperCase()}</h3>
             <table>
               <thead>
                 <tr>
@@ -37,7 +37,7 @@ const Display = ({ menu }) => {
               <tbody>
                 {items.map((item, index) => (
                   <tr key={index}>
-                    <td>{item.name}</td>
+                    <td className='category-name'>{item.name}</td>
                     {hasSizes ? (
                       <>
                         <td>{item.priceSmall ? `Ksh ${item.priceSmall}` : '-'}</td>
