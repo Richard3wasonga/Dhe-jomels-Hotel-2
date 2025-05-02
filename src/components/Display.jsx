@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Display = ({ menu }) => {
+const Display = ({ menu,addToCart}) => {
   
   const groupedByCategory = menu.reduce((acc, item) => {
     if (!acc[item.category]) {
@@ -56,6 +56,9 @@ const Display = ({ menu }) => {
                         </ul>
                       </td>
                     )}
+                    <td>
+                      <button onClick={() => addToCart(item)} >Order</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

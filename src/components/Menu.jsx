@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Display from './Display'
 import MenuNav from './MenuNav'
 
@@ -8,7 +8,58 @@ const Menu = ({menu}) => {
   const [cartBar, setcartBar] = useState(false)
   const [selectedCategory, setselectedCategory] = useState([])
   const [searchQuery, setsearchQuery] = useState('')
+  const [cartItems, setcartItems] = useState([])
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cartItems'));
+    if (storedCart) {
+      setcartItems(storedCart)
+    }
+  }, []);
+
+  const updateLocalStorageCart = (items) => {
+    localStorage.setItem('cartItems', JSON.stringify(items));
+  };
+
+  const addToCart = (item) => {
+    const updatedCart = [...cartItems];
+    const index = updatedCart.findIndex(i => i.id === item.id);
+
+    if (index !== -1) {
+      updatedCart[index].quantity += 1;
+    } else {
+      updatedCart.push({ ...item, quantity: 1 });
+    }
+
+    setcartItems(updatedCart);
+    updateLocalStorageCart(updatedCart);
+  };
+
+  const increaseQuantity = (id) => {
+    const updatedCart = cartItems.map(item =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setcartItems(updatedCart);
+    updateLocalStorageCart(updatedCart);
+  };
+
+  const decreaseQuantity = (id) => {
+    const updatedCart = cartItems
+      .map(item =>
+        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+      )
+      .filter(item => item.quantity > 0);
+
+    setcartItems(updatedCart);
+    updateLocalStorageCart(updatedCart);
+  }
+
+  const totalCost = cartItems.reduce((sum, item) => {
+    const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
+    return sum + price * item.quantity;
+  }, 0)
+
+ 
   const toggleFilterBar = () => {
       setfilterBar(prev => !prev)
 
@@ -53,9 +104,31 @@ const Menu = ({menu}) => {
         </div>
         <div className={`sidecart ${cartBar ? 'showcart' : 'hidecart'}`}>
           <h2>Your Cart</h2>
-          <button onClick={toggleCartBar}>close</button>
+          {cartItems.length === 0 ? (
+          <p>Your cart is empty</p>
+        ) : (
+          <ul>
+            {cartItems.map((item) => {
+              const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
+              return (
+                <li key={item.id}>
+                  <span>{item.name}</span>
+                  <div>
+                    <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => increaseQuantity(item.id)}>+</button>
+                  </div>
+                  <p>Ksh {price * item.quantity}</p>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+        <h3>Total: Ksh {totalCost}</h3>
+        <button>Checkout</button>
+        <button onClick={toggleCartBar}>close</button>
         </div>
-      <Display menu={filteredItem}/>
+      <Display menu={filteredItem} addToCart={addToCart}/>
     </div>
   )
 }
