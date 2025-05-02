@@ -54,6 +54,12 @@ const Menu = ({menu}) => {
     updateLocalStorageCart(updatedCart);
   }
 
+  const handleRemove = (id) => {
+    const updatedCart = cartItems.filter(item => item.id !== id)
+    setcartItems(updatedCart)
+    updateLocalStorageCart(updatedCart)
+  }
+
   const totalCost = cartItems.reduce((sum, item) => {
     const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
     return sum + price * item.quantity;
@@ -119,6 +125,7 @@ const Menu = ({menu}) => {
                     <button onClick={() => increaseQuantity(item.id)}>+</button>
                   </div>
                   <p>Ksh {price * item.quantity}</p>
+                  <button onClick={() => handleRemove(item.id)} >Remove</button>
                 </li>
               );
             })}
