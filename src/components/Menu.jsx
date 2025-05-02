@@ -2,14 +2,17 @@ import React,{useState,useEffect} from 'react'
 import Display from './Display'
 import MenuNav from './MenuNav'
 import QrCodeComponent from './QrCodeComponent'
+import {useNavigate} from 'react-router-dom'
 
 const Menu = ({menu}) => {
+  const navigate = useNavigate()
 
   const [filterBar, setfilterBar] = useState(false)
   const [cartBar, setcartBar] = useState(false)
   const [selectedCategory, setselectedCategory] = useState([])
   const [searchQuery, setsearchQuery] = useState('')
   const [cartItems, setcartItems] = useState([])
+  
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cartItems'));
@@ -149,7 +152,7 @@ const Menu = ({menu}) => {
         setcartItems([]);
         updateLocalStorageCart([]);
       }} disabled={cartItems.length === 0}>Clear</button>
-      <button className="checkout-btn" disabled={cartItems.length === 0}>Checkout</button>
+      <button className="checkout-btn" disabled={cartItems.length === 0} onClick={() => {navigate('/checkout')}}>Checkout</button>
       <button className="close-cart-btn" onClick={toggleCartBar}>Close</button>
     </div>
   </div>

@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import Menu from './components/Menu'
+import CheckoutPage from './components/CheckoutPage';
 
 
 const App = () => {
@@ -27,10 +29,21 @@ const App = () => {
 
   if(loading) return <div className="loading-message">Loading menu...</div>
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Menu menu={menuInfo}/>
+    },
+    {
+      path: '/checkout',
+      element: <CheckoutPage />
+    }
+
+  ])
+
   return (
-    <div>
-      <Menu menu={menuInfo}/>
-    </div>
+    <RouterProvider router={router}/>
+  
   )
 }
 
