@@ -2,18 +2,18 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter,faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-const MenuNav = ({ toggleFilterBar, setsearchQuery, searchQuery }) => {
+const MenuNav = ({ toggleFilterBar, setsearchQuery, searchQuery,toggleCartBar }) => {
   return (
-    <div>
-        <div>
-            <button onClick={toggleFilterBar} className="filter-button"><FontAwesomeIcon icon={faFilter} /></button>
-            <div>
+    <div className="menu-nav">
+        <div className="menu-nav-top" >
+            <button onClick={toggleFilterBar} className="filter-button"><FontAwesomeIcon icon={faFilter} /> Filter</button>
+            <div className="hotel-branding">
                 <span className="hotel-title">DHE JOMELS</span>
                 <span className="hotel-subtitle">HOTEL</span>
             </div>
-            <button><FontAwesomeIcon icon={faCartShopping} /></button>
+            <button onClick={toggleCartBar} className="cart-button"><FontAwesomeIcon icon={faCartShopping} /> Cart</button>
         </div>
-        <div>
+        <div className="menu-nav-search">
             <input
                 type="text"
                 placeholder="Search for a dish..."

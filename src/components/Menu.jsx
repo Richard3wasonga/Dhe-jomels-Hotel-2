@@ -5,12 +5,16 @@ import MenuNav from './MenuNav'
 const Menu = ({menu}) => {
 
   const [filterBar, setfilterBar] = useState(false)
+  const [cartBar, setcartBar] = useState(false)
   const [selectedCategory, setselectedCategory] = useState([])
   const [searchQuery, setsearchQuery] = useState('')
 
   const toggleFilterBar = () => {
       setfilterBar(prev => !prev)
 
+  }
+  const toggleCartBar = () => {
+    setcartBar(prev => !prev)
   }
 
   const handleCategoryChange = (category) => {
@@ -32,7 +36,7 @@ const Menu = ({menu}) => {
 
   return (
     <div>
-      <MenuNav toggleFilterBar={toggleFilterBar} searchQuery={searchQuery} setsearchQuery={setsearchQuery}/>
+      <MenuNav toggleFilterBar={toggleFilterBar} toggleCartBar={toggleCartBar} searchQuery={searchQuery} setsearchQuery={setsearchQuery}/>
       <div className={`sidebar ${filterBar ? 'show' : 'hide'}`}>
             <h2>Filter menu</h2>
             {categories.map((category,id) => (
@@ -46,6 +50,10 @@ const Menu = ({menu}) => {
                 </label>
             ))}
             <button onClick={toggleFilterBar}>Close</button>
+        </div>
+        <div className={`sidecart ${cartBar ? 'showcart' : 'hidecart'}`}>
+          <h2>Your Cart</h2>
+          <button onClick={toggleCartBar}>close</button>
         </div>
       <Display menu={filteredItem}/>
     </div>
