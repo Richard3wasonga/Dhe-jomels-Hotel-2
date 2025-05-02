@@ -234,8 +234,8 @@ select option {
 .sidecart {
   position: fixed;
   top: 0;
-  right: -350px; 
-  width: 350px;
+  right: -300px; 
+  width: 300px;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
@@ -250,7 +250,7 @@ select option {
   right: 0;
 }
 .sidecart.hidecart {
-  right: -350px;
+  right: -300px;
 }
 
 .sidecart h2 {
