@@ -30,6 +30,7 @@ const Display = ({ menu, addToCart }) => {
       <h2>Our Menu</h2>
       {Object.entries(groupedByCategory).map(([category, items]) => {
         const hasSizes = items.some(item => item.priceSmall || item.priceMedium || item.priceLarge);
+        const hasDescriptions = items.some(item => item.details); // check if any item in the category has description
 
         return (
           <div key={category} className={`menu-section ${category.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -48,6 +49,7 @@ const Display = ({ menu, addToCart }) => {
                   ) : (
                     <th>Price</th>
                   )}
+                  {hasDescriptions && <th>Description</th>}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -59,6 +61,7 @@ const Display = ({ menu, addToCart }) => {
                   return (
                     <tr key={index}>
                       <td className='category-name'>{item.name}</td>
+
                       {hasSizeOptions ? (
                         <>
                           <td>{item.priceSmall ? `Ksh ${item.priceSmall}` : '-'}</td>
@@ -78,15 +81,21 @@ const Display = ({ menu, addToCart }) => {
                       ) : (
                         <td>{item.price ? `Ksh ${item.price}` : '-'}</td>
                       )}
-                      {item.details && (
+
+                      {hasDescriptions && (
                         <td>
-                          <ul className="menu-details">
-                            {item.details.map((detail, id) => (
-                              <li key={id}>{detail}</li>
-                            ))}
-                          </ul>
+                          {item.details ? (
+                            <ul className="menu-details">
+                              {item.details.map((detail, id) => (
+                                <li key={id}>{detail}</li>
+                              ))}
+                            </ul>
+                          ) : (
+                            '-' // placeholder if the column exists but this item has no description
+                          )}
                         </td>
                       )}
+
                       <td>
                         <button
                           onClick={() =>
