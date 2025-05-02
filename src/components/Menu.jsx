@@ -60,10 +60,12 @@ const Menu = ({menu}) => {
     updateLocalStorageCart(updatedCart)
   }
 
-  const totalCost = cartItems.reduce((sum, item) => {
+  const totalCost = parseFloat(
+     cartItems.reduce((sum, item) => {
     const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
     return sum + price * item.quantity;
-  }, 0)
+  }, 0).toFixed(2)
+)
 
  
   const toggleFilterBar = () => {
