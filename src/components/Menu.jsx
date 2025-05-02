@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Display from './Display'
 import MenuNav from './MenuNav'
+import QrCodeComponent from './QrCodeComponent'
 
 const Menu = ({menu}) => {
 
@@ -154,6 +155,7 @@ const Menu = ({menu}) => {
   </div>
 </div>
       <Display menu={filteredItem} addToCart={addToCart}/>
+      <QrCodeComponent />
     </div>
   )
 }

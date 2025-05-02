@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Menu from './components/Menu'
-import QrCodeComponent from './components/QrCodeComponent'
+
 
 const App = () => {
 
@@ -30,7 +30,6 @@ const App = () => {
   return (
     <div>
       <Menu menu={menuInfo}/>
-      <QrCodeComponent />
     </div>
   )
 }
