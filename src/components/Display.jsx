@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Display = ({ menu,addToCart}) => {
-  
+const Display = ({ menu, addToCart }) => {
+  const [selectedSizes, setSelectedSizes] = useState({});
+
   const groupedByCategory = menu.reduce((acc, item) => {
     if (!acc[item.category]) {
       acc[item.category] = [];
@@ -9,6 +10,20 @@ const Display = ({ menu,addToCart}) => {
     acc[item.category].push(item);
     return acc;
   }, {});
+
+  const handleSizeChange = (itemId, size) => {
+    setSelectedSizes(prev => ({
+      ...prev,
+      [itemId]: size,
+    }));
+  };
+
+  const getPriceBySize = (item, size) => {
+    if (size === 'Small') return item.priceSmall;
+    if (size === 'Medium') return item.priceMedium;
+    if (size === 'Large') return item.priceLarge;
+    return item.price;
+  };
 
   return (
     <div>
@@ -28,39 +43,77 @@ const Display = ({ menu,addToCart}) => {
                       <th>Small</th>
                       <th>Medium</th>
                       <th>Large</th>
+                      <th>Select Size</th>
                     </>
                   ) : (
                     <th>Price</th>
                   )}
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {items.map((item, index) => (
-                  <tr key={index}>
-                    <td className='category-name'>{item.name}</td>
-                    {hasSizes ? (
-                      <>
-                        <td>{item.priceSmall ? `Ksh ${item.priceSmall}` : '-'}</td>
-                        <td>{item.priceMedium ? `Ksh ${item.priceMedium}` : '-'}</td>
-                        <td>{item.priceLarge ? `Ksh ${item.priceLarge}` : '-'}</td>
-                      </>
-                    ) : (
-                      <td>{item.price ? `Ksh ${item.price}` : '-'}</td>
-                    )}
-                    {item.details && (
+                {items.map((item, index) => {
+                  const hasSizeOptions = item.priceSmall || item.priceMedium || item.priceLarge;
+                  const selectedSize = selectedSizes[item.id] || 'Small';
+
+                  return (
+                    <tr key={index}>
+                      <td className='category-name'>{item.name}</td>
+                      {hasSizeOptions ? (
+                        <>
+                          <td>{item.priceSmall ? `Ksh ${item.priceSmall}` : '-'}</td>
+                          <td>{item.priceMedium ? `Ksh ${item.priceMedium}` : '-'}</td>
+                          <td>{item.priceLarge ? `Ksh ${item.priceLarge}` : '-'}</td>
+                          <td>
+                            <select
+                              value={selectedSize}
+                              onChange={(e) => handleSizeChange(item.id, e.target.value)}
+                            >
+                              {item.priceSmall && <option value="Small">Small</option>}
+                              {item.priceMedium && <option value="Medium">Medium</option>}
+                              {item.priceLarge && <option value="Large">Large</option>}
+                            </select>
+                          </td>
+                        </>
+                      ) : (
+                        <td>{item.price ? `Ksh ${item.price}` : '-'}</td>
+                      )}
+                      {item.details && (
+                        <td>
+                          <ul className="menu-details">
+                            {item.details.map((detail, id) => (
+                              <li key={id}>{detail}</li>
+                            ))}
+                          </ul>
+                        </td>
+                      )}
                       <td>
-                        <ul className="menu-details">
-                          {item.details.map((detail, id) => (
-                            <li key={id}>{detail}</li>
-                          ))}
-                        </ul>
+                        <button
+                          onClick={() =>
+                            addToCart(
+                              hasSizeOptions
+                                ? {
+                                    id: `${item.id}-${selectedSize}`,
+                                    name: item.name,
+                                    size: selectedSize,
+                                    price: getPriceBySize(item, selectedSize),
+                                    quantity: 1,
+                                  }
+                                : {
+                                    id: item.id,
+                                    name: item.name,
+                                    price: item.price,
+                                    quantity: 1,
+                                  }
+                            )
+                          }
+                        >
+                          Order
+                        </button>
                       </td>
-                    )}
-                    <td>
-                      <button onClick={() => addToCart(item)} >Order</button>
-                    </td>
-                  </tr>
-                ))}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
