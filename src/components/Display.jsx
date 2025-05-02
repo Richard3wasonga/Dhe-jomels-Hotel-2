@@ -98,6 +98,7 @@ const Display = ({ menu, addToCart }) => {
 
                       <td>
                         <button
+                        className='order-btn'
                           onClick={() =>
                             addToCart(
                               hasSizeOptions

@@ -106,6 +106,44 @@ td {
 tr:nth-child(even) {
   background-color: #fcfcfc;
 }
+.order-btn {
+  background-color: #C59456;  
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.order-btn:hover {
+  background-color: #ffbe0b;  
+}
+.order-btn:active {
+  transform: scale(0.98);  
+}
+select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  color: #800023;
+}
+select:focus {
+  border-color: #d4af37;  
+  background-color: #f1f1f1;
+  outline: none;
+}
+select option {
+  padding: 10px;
+}
 .loading-message {
   text-align: center;
   font-size: 1.5rem;
@@ -161,28 +199,202 @@ tr:nth-child(even) {
 .sidebar.hide {
   left: -300px;
 }
+.sidebar h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.sidebar label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.sidebar input[type="checkbox"] {
+  margin-right: 10px;
+}
+.sidebar button {
+  background-color: #ff3f3f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+
+.sidebar button:hover {
+  background-color: #e83535;
+}
 .sidecart {
   position: fixed;
   top: 0;
-  right: -300px;
-  width: 300px;
+  right: -350px; 
+  width: 350px;
   height: 100vh;
   background-color: #ffffff;
-  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
-  padding: 2rem 1.5rem;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   transition: right 0.3s ease;
-  z-index: 999;
+  z-index: 1000;
   font-family: 'Poppins', sans-serif;
 }
-
 .sidecart.showcart {
   right: 0;
 }
-
 .sidecart.hidecart {
-  right: -300px;
+  right: -350px;
 }
+
+.sidecart h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #800023;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 10px 0;
+  border-bottom: 2px solid #eee;
+  z-index: 10;
+}
+
+.sidecart ul {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.sidecart li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 8px;
+}
+
+.sidecart li div {
+  flex-grow: 1;
+}
+
+.sidecart li div strong {
+  font-size: 18px;
+}
+
+.sidecart li div small {
+  font-size: 14px;
+}
+
+.sidecart li button {
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidecart li button:hover {
+  background-color: #ddd;
+}
+
+.cart-bottom {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  z-index: 10;
+}
+
+.total-cost {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.cart-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cart-buttons .remove-btn {
+  background-color: #ccc;
+  color: #000;
+}
+
+.cart-buttons .checkout-btn {
+  background-color: #800023;
+  color: white;
+}
+
+.cart-buttons .checkout-btn:hover {
+  background-color: #a0002d;
+}
+
+.cart-buttons .remove-btn:hover {
+  background-color: #bbb;
+}
+
+.close-cart-btn {
+  background-color: transparent;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  float: right;
+}
+
+.close-cart-btn:hover {
+  color: #ff3f3f;
+}
+.decrement-btn, .increment-btn {
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.decrement-btn:hover, .increment-btn:hover {
+  background-color: #ddd;
+}
+
+.decrement-btn:focus, .increment-btn:focus {
+  outline: none;
+}
+
 .menu-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9;
   background-color: #ffffff;
   padding: 24px 30px;
   margin: 30px auto;

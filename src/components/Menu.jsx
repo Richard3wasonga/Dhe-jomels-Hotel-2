@@ -109,32 +109,48 @@ const Menu = ({menu}) => {
             <button onClick={toggleFilterBar}>Close</button>
         </div>
         <div className={`sidecart ${cartBar ? 'showcart' : 'hidecart'}`}>
-          <h2>Your Cart</h2>
-          {cartItems.length === 0 ? (
-          <p>Your cart is empty</p>
-        ) : (
-          <ul>
-            {cartItems.map((item) => {
-              const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
-              return (
-                <li key={item.id}>
-                  <span>{item.name}</span>
-                  <div>
-                    <button onClick={() => decreaseQuantity(item.id)}>-</button>
-                    <span>{item.quantity}</span>
-                    <button onClick={() => increaseQuantity(item.id)}>+</button>
-                  </div>
-                  <p>Ksh {price * item.quantity}</p>
-                  <button onClick={() => handleRemove(item.id)} >Remove</button>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        <h3>Total: Ksh {totalCost}</h3>
-        <button>Checkout</button>
-        <button onClick={toggleCartBar}>close</button>
-        </div>
+  <h2>Your Cart</h2>
+  
+  {cartItems.length === 0 ? (
+    <p>Your cart is empty</p>
+  ) : (
+    <ul>
+      {cartItems.map((item) => {
+        const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
+        return (
+          <li key={item.id}>
+            <div>
+              <strong>{item.name}</strong><br />
+              <div>
+                <button className='decrement-btn' onClick={() => decreaseQuantity(item.id)}>-</button>
+                <small>Qty: {item.quantity}</small>
+                <button className='increment-btn' onClick={() => increaseQuantity(item.id)}>+</button>
+
+              </div>
+              
+            </div>
+            <div>
+              <p>KSH {price * item.quantity}</p>
+              <button onClick={() => handleRemove(item.id)}>Remove</button>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  )}
+
+  <div className="cart-bottom">
+    <p className="total-cost">Total: KSH {totalCost}</p>
+    <div className="cart-buttons">
+      <button className="remove-btn" onClick={() => {
+        setcartItems([]);
+        updateLocalStorageCart([]);
+      }} disabled={cartItems.length === 0}>Clear</button>
+      <button className="checkout-btn" disabled={cartItems.length === 0}>Checkout</button>
+      <button className="close-cart-btn" onClick={toggleCartBar}>Close</button>
+    </div>
+  </div>
+</div>
       <Display menu={filteredItem} addToCart={addToCart}/>
     </div>
   )
