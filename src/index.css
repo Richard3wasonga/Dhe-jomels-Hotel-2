@@ -586,3 +586,87 @@ select option {
   background-color: #b2824b;
   transform: scale(1.02);
 }
+.payment-form {
+  background: linear-gradient(135deg, #fffdf9, #fff);
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 520px;
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.payment-form h3 {
+  font-size: 26px;
+  color: #800023;
+  margin-bottom: 30px;
+  font-family: "Lobster", cursive;
+  text-align: center;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.payment-option:hover {
+  background-color: #fdf4f4;
+}
+
+.payment-option input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C59456;
+  border-radius: 50%;
+  margin-right: 16px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-option input[type="radio"]:checked {
+  background-color: #C59456;
+  border-color: #C59456;
+}
+
+.payment-option input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.payment-option span {
+  font-size: 16px;
+  color: #333;
+}
+
+.payment-form button {
+  width: 100%;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 30px;
+  background-color: #800023;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.payment-form button:hover {
+  background-color: #a5002c;
+  transform: translateY(-2px);
+}
