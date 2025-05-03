@@ -30,7 +30,7 @@ const Display = ({ menu, addToCart }) => {
       <h2>Our Menu</h2>
       {Object.entries(groupedByCategory).map(([category, items]) => {
         const hasSizes = items.some(item => item.priceSmall || item.priceMedium || item.priceLarge);
-        const hasDescriptions = items.some(item => item.details); // check if any item in the category has description
+        const hasDescriptions = items.some(item => item.details); 
 
         return (
           <div key={category} className={`menu-section ${category.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -91,7 +91,7 @@ const Display = ({ menu, addToCart }) => {
                               ))}
                             </ul>
                           ) : (
-                            '-' // placeholder if the column exists but this item has no description
+                            '-' 
                           )}
                         </td>
                       )}
