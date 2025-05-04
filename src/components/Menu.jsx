@@ -161,7 +161,7 @@ const Menu = ({menu}) => {
     </div>
   </div>
 </div>
-      <Display menu={filteredItem} addToCart={addToCart}/>
+      <Display menu={filteredItem}/>
       <QrCodeComponent />
     </div>
   )

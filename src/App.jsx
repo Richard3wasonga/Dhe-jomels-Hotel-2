@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import Menu from './components/Menu'
 import CheckoutPage from './components/CheckoutPage';
+import MenuItems from './components/Menuitems';
 
 
 const App = () => {
@@ -37,6 +38,10 @@ const App = () => {
     {
       path: '/checkout',
       element: <CheckoutPage />
+    },
+    {
+      path: '/category/:categoryName',
+      element: <MenuItems />
     }
 
   ])
