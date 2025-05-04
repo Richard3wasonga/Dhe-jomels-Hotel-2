@@ -35,6 +35,7 @@ const MenuItems = ({addToCart}) => {
       <button className="returnbtn" onClick={handleBackToCategory}>Back to category</button>
       <div className="menu-container">
         <h2 className="menu-title">Our Menu</h2>
+        <div className="menu-grid" >
         {menu.map((item) => {
           const hasSizeOptions = item.priceSmall || item.priceMedium || item.priceLarge;
           const selectedSize = selectedSizes[item.id] || 'Small';
@@ -133,6 +134,9 @@ const MenuItems = ({addToCart}) => {
             </div>
           );
         })}
+
+        </div>
+        
       </div>
     </div>
   );
