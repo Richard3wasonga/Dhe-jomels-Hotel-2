@@ -24,21 +24,7 @@ const Menu = ({menu}) => {
   const updateLocalStorageCart = (items) => {
     localStorage.setItem('cartItems', JSON.stringify(items));
   };
-
-  const addToCart = (item) => {
-    const updatedCart = [...cartItems];
-    const index = updatedCart.findIndex(i => i.id === item.id);
-
-    if (index !== -1) {
-      updatedCart[index].quantity += 1;
-    } else {
-      updatedCart.push({ ...item, quantity: 1 });
-    }
-
-    setcartItems(updatedCart);
-    updateLocalStorageCart(updatedCart);
-  };
-
+ 
   const increaseQuantity = (id) => {
     const updatedCart = cartItems.map(item =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item

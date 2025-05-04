@@ -9,6 +9,8 @@ const App = () => {
 
   const [menuInfo, setmenuInfo] = useState([])
   const [loading, setloading] = useState(true)
+  const [cartItems, setCartItems] = useState([])
+
   useEffect(() => {
     const fetchMenu = async () => {
       try{
@@ -28,12 +30,40 @@ const App = () => {
     fetchMenu()
   }, [])
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cartItems'));
+    if (storedCart) {
+      setCartItems(storedCart);
+    }
+  }, []);
+
+  const updateLocalStorageCart = (items) => {
+    localStorage.setItem('cartItems', JSON.stringify(items));
+  };
+
+  const addToCart = (item) => {
+    setCartItems((prevCartItems) => {
+      const updatedCart = [...prevCartItems];
+      const index = updatedCart.findIndex(i => i.id === item.id);
+  
+      if (index !== -1) {
+        updatedCart[index].quantity += 1;
+      } else {
+        updatedCart.push({ ...item, quantity: 1 });
+      }
+  
+      updateLocalStorageCart(updatedCart);
+      return updatedCart;
+    });
+  };
+
+
   if(loading) return <div className="loading-message">Loading menu...</div>
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Menu menu={menuInfo}/>
+      element: <Menu menu={menuInfo} addToCart={addToCart}/>
     },
     {
       path: '/checkout',
@@ -41,7 +71,7 @@ const App = () => {
     },
     {
       path: '/category/:categoryName',
-      element: <MenuItems />
+      element: <MenuItems addToCart={addToCart}/>
     }
 
   ])
