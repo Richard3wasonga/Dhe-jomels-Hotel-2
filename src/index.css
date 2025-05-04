@@ -28,7 +28,11 @@
   padding: 16px;
   border-radius: 12px;
 }
-h2 {
+
+.sidebar  h2,
+.sidecart h2 ,
+.checkout-page h2 ,
+.menu-container h2 {
   text-align: center;
   font-size: 36px;
   font-weight: 600;
@@ -39,7 +43,11 @@ h2 {
   position: relative;
 }
 
-h2::after {
+.sidebar  h2::after ,
+.sidecart h2::after ,
+.checkout-page h2::after ,
+.qr-code-container h2::after ,
+.menu-container h2::after {
   content: '';
   display: block;
   width: 80px;
