@@ -125,7 +125,11 @@ const Menu = ({menu}) => {
         const price = item.price || item.priceSmall || item.priceMedium || item.priceLarge || 0;
         return (
           <li key={item.id}>
+            
             <div>
+              <div>
+                <img src={item.image} alt={item.name} className='cartimg'/>
+              </div>
               <strong>{item.name}</strong><br />
               <div>
                 <button className='decrement-btn' onClick={() => decreaseQuantity(item.id)}>-</button>
