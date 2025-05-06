@@ -369,27 +369,9 @@ select option {
   background-color: #a0002e;
   transform: scale(1.05);
 }
-
-.hotel-branding {
-  text-align: center;
-  flex-grow: 1;
+.menu-nav-top img{
+  width: 300px;
 }
-
-.hotel-title {
-  font-family: "Playfair", serif;
-  font-size: 28px;
-  color: #1f1f1f;
-  font-weight: 700;
-  display: block;
-}
-
-.hotel-subtitle {
-  font-size: 14px;
-  color: #C59456;
-  letter-spacing: 1px;
-  font-weight: 500;
-}
-
 .menu-nav-search {
   margin-top: 12px;
 }
