@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBackward } from '@fortawesome/free-solid-svg-icons'
 
 const MenuItems = ({addToCart}) => {
   const navigate = useNavigate();
@@ -32,7 +34,7 @@ const MenuItems = ({addToCart}) => {
 
   return (
     <div>
-      <button className="returnbtn" onClick={handleBackToCategory}>Back to category</button>
+      <button className="returnbtn" onClick={handleBackToCategory}><FontAwesomeIcon icon={faBackward} /> Back to category</button>
       <div className="menu-container">
         <h2 className="menu-title">Our Menu</h2>
         <div className="menu-grid" >
